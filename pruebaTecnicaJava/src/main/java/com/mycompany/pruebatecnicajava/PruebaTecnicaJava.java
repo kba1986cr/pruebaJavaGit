@@ -13,10 +13,10 @@ public class PruebaTecnicaJava {
 
     //Variables
     static char asientos[][] = new char[10][10];
-    static boolean bandera = false;
+    static boolean bandera, banderaDos = false;
     static Scanner teclado = new Scanner(System.in);
     static int fila, asiento;
-    static String respuesta;
+    static String respuesta, verAsientosD;
 
     // Método para llenar asientos
     public static void llenarAsientosL() {
@@ -43,40 +43,56 @@ public class PruebaTecnicaJava {
             System.out.println("");
         }
     }
-    
 
     public static void main(String[] args) {
         llenarAsientosL();
 
-        System.out.println("Bienvenido al Sistema de Recervas");
+        System.out.println("Bienvenido al Sistema de Reservas");
 
-        while (bandera != true) {
-            System.out.println("¿Desea ver los asientos disponibles?");
-            verAsientos(asientos);
+        while (!bandera) {
+            System.out.println("¿Desea ver los asientos disponibles? S:(para Sí) N:(cualquier tecla NO)");
+            verAsientosD = teclado.next();
+            if (verAsientosD.equalsIgnoreCase("S")) {
+                verAsientos(asientos);
+            }
             System.out.println("");
 
-            System.out.println("Ingrese Fila y Asiento a reservar");
-            System.out.println("Ingrese a Fila (Entre 0 y 9)");
-            fila = teclado.nextInt();
-            System.out.println("Ingrese a Asiento (Entre 0 y 9)");
-            asiento = teclado.nextInt();
+            banderaDos = false;
+            while (!banderaDos) {
+                System.out.println("Ingrese Fila y Asiento a reservar");
+                System.out.print("Ingrese fila (0 a 9): ");
+                fila = teclado.nextInt();
+                System.out.print("Ingrese asiento (0 a 9): ");
+                asiento = teclado.nextInt();
+
+                if (fila >= 0 && fila <= 9) {
+                    if (asiento >= 0 && asiento <= 9) {
+                        banderaDos = true;
+                    } else {
+                        System.out.println("️ Asiento inválido. Intente de nuevo.\n");
+                    }
+                } else {
+                    System.out.println("️ Fila inválida. Intente de nuevo.\n");
+                }
+            }
 
             if (asientos[fila][asiento] == 'L') {
                 asientos[fila][asiento] = 'X';
-                System.out.println("El asiento fue reservado correctamente");
+                System.out.println(" Asiento reservado correctamente.");
             } else {
-                System.out.println("El asiento esta ocupado. Por favor elija otro");
-
+                System.out.println(" El asiento ya está ocupado. Por favor elija otro.");
             }
-            System.out.println("¿Desea finalizar la reserva? S:(para Si) N:(cualquier tecla NO)");
+
+            System.out.println("¿Desea finalizar la reserva? S:(para Sí) N:(cualquier tecla NO)");
             respuesta = teclado.next();
 
             if (respuesta.equalsIgnoreCase("S")) {
                 bandera = true;
             }
-
         }
 
+        System.out.println(
+                "Gracias por usar el sistema de reservas.");
     }
 
 }
