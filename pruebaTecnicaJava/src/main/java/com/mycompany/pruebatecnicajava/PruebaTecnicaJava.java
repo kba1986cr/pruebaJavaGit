@@ -65,22 +65,18 @@ public class PruebaTecnicaJava {
                 System.out.print("Ingrese asiento (0 a 9): ");
                 asiento = teclado.nextInt();
 
-                if (fila >= 0 && fila <= 9) {
-                    if (asiento >= 0 && asiento <= 9) {
-                        banderaDos = true;
-                    } else {
-                        System.out.println("️ Asiento inválido. Intente de nuevo.\n");
-                    }
+                if (fila >= 0 && fila <= 9 && asiento >= 0 && asiento <= 9) {
+                    banderaDos = true;
                 } else {
-                    System.out.println("️ Fila inválida. Intente de nuevo.\n");
+                    System.out.println("Fila o asiento inválido. Intente de nuevo.\n");
                 }
             }
 
             if (asientos[fila][asiento] == 'L') {
                 asientos[fila][asiento] = 'X';
-                System.out.println(" Asiento reservado correctamente.");
+                System.out.println("Asiento reservado correctamente.");
             } else {
-                System.out.println(" El asiento ya está ocupado. Por favor elija otro.");
+                System.out.println("El asiento ya está ocupado. Por favor elija otro.");
             }
 
             System.out.println("¿Desea finalizar la reserva? S:(para Sí) N:(cualquier tecla NO)");
@@ -91,8 +87,7 @@ public class PruebaTecnicaJava {
             }
         }
 
-        System.out.println(
-                "Gracias por usar el sistema de reservas.");
+        System.out.println("Gracias por usar el sistema de reservas.");
     }
 
 }
